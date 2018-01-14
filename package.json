@@ -1,0 +1,37 @@
+{
+  "name": "letssportnow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-dev": "node server.js",
+    "start": "concurrently \"node server.js\" \"cd APIFront && npm run start \""
+  },
+  "engine": {
+    "node": "*",
+    "npm": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonathanPucci/LetsSportNow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonathanPucci/LetsSportNow/issues"
+  },
+  "homepage": "https://github.com/JonathanPucci/LetsSportNow#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "concurrently": "^3.5.1",
+    "express": "^4.16.2",
+    "express-async-await": "^1.1.0",
+    "express-promise-router": "^2.0.0",
+    "mime": "^2.2.0",
+    "nodemon": "^1.12.1",
+    "pg": "^7.4.1",
+    "pg-promise": "^5.9.7"
+  },
+  "devDependencies": {}
+}

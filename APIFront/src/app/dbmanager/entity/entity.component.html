@@ -1,0 +1,50 @@
+  <!-- <h2><button (click)="getData()">{{name}} GetData</button></h2>
+  {{entity}} -->
+
+
+  <div class='panel panel-primary'>
+    <div class='panel-heading'>
+      {{name}} Management
+    </div>
+    <div class='panel-body'>
+      <div class='table-responsive'>
+        <div style="padding-bottom:10px"><button class="btn btn-primary" (click)="addEntity()">Add</button></div>
+        <div class="alert alert-info" role="alert" *ngIf="indLoading"><img src="../../images/loading.gif" width="32" height="32" /> Loading...</div>
+        <div *ngIf='entities && entities.length==0' class="alert alert-info" role="alert">No record found!</div>
+        <table class='table table-striped' *ngIf='entities && entities.length'>
+          <thead>
+            <tr>
+              <th *ngFor="let property of properties">{{property}}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let entity of entities; let i = index">
+              <td *ngFor="let property of properties">
+                <span *ngIf="!editing[i]">{{entity[property]}}</span>
+                  <input *ngIf="editing[i]" [attr.value]="entity[property]" (keyup)="inputChanged($event,i,property)"/>
+                </td>
+              <td>
+                <div *ngIf="!editing[i]">
+                  <button title="Edit" class="btn btn-primary" (click)="editEntity(i)">Edit</button>
+                  <button title="Delete" class="btn btn-danger" (click)="deleteEntity(i)">Delete</button>
+              </div>
+              <div *ngIf="editing[i]">
+                <button title="Done" class="btn btn-primary" (click)="doneEditingEntity(i)">Done</button>
+
+              </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+        </div>
+      </div>
+      <div *ngIf="msg" role="alert" class="alert alert-info alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        {{msg}}
+      </div>
+    </div>
+  </div>
