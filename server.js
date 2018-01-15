@@ -28,7 +28,7 @@ app.listen(server_port, server_ip_address, function() {
 
 /*
 Username: user5GS
-       Password: 28jyraOcEmoqhP31
+  Password: 28jyraOcEmoqhP31
   Database Name: sampledb
  Connection URL: postgresql://postgresql:5432/
 */

@@ -19,6 +19,25 @@ function createUser(id, name) {
     });
 }
 
+function createEventParticipant(eid, uid) {
+  let ep = {
+    User_ID: uid,
+    Event_ID: eid
+  };
+  return db
+    .none(
+      'insert into "EventParticipants"("User_ID","User_Name")' +
+        "values(${User_ID},${User_Name})",
+      user
+    )
+    .then(function() {
+      console.log("added user");
+    })
+    .catch(function(err) {
+      console.log("error while adding user" + err);
+    });
+}
+
 function createEvent(id, lla, llo, des, p, da, hid, spid, pmi, pma, pn, s) {
   let myevent = {
     Event_ID: id,
@@ -88,7 +107,9 @@ db
           "10",
           "0",
           "Basketball"
-        );
+        ).then(() => {
+          createEventParticipant("1", "1");
+        });
       });
     });
   })
