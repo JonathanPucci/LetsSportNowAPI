@@ -74,7 +74,7 @@ function removeEventParticipant(req, res, next) {
 
 module.exports = {
   getAllEventParticipants: getAllEventParticipants,
-  createEventParticipants: createEventParticipant,
+  createEventParticipant: createEventParticipant,
   removeEventParticipant: removeEventParticipant,
   getParticipantsOfEvent: getParticipantsOfEvent
 };
