@@ -5,8 +5,6 @@ interface User {
 
 interface Event {
   Event_ID: int;
-  Location_latitude: int;
-  Location_longitude: int;
   Description: string;
   Photo: string;
   Date: Date;
@@ -14,8 +12,17 @@ interface Event {
   Spot_ID: int;
   Participants_min: int;
   Participants_max: int;
-  Participants_number: int;
   Sport: string
+}
+
+interface EventParticipant {
+  Event_ID: int;
+  User_ID: int;
+}
+
+interface FieldSpot {
+  Field: string;
+  Spot_ID: int;
 }
 
 interface Spot {
@@ -29,4 +36,6 @@ module.exports = {
   UserModel: User;
   EventModel: Event;
   SpotModel : Spot;
+  FieldSpotModel : FieldSpot;
+  EventParticipantModel : EventParticipant;
 };
