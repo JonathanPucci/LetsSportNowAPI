@@ -5,7 +5,7 @@ var db = require("../queriesEventParticipants");
 
 router.get("/", db.getAllEventParticipants);
 router.get("/:id", db.getParticipantsOfEvent);
-router.post("/", db.createEventParticipants);
-router.delete("/:id", db.removeEventParticipants);
+router.post("/", db.createEventParticipant);
+router.delete("/:id", db.removeEventParticipant);
 
 module.exports = router;

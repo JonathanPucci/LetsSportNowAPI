@@ -32,7 +32,7 @@ function getParticipantsOfEvent(req, res, next) {
     });
 }
 
-function createEventParticipants(req, res, next) {
+function createEventParticipant(req, res, next) {
   db
     .none(
       'insert into "EventParticipants"("Event_ID","User_ID")' +
@@ -74,7 +74,7 @@ function removeEventParticipant(req, res, next) {
 
 module.exports = {
   getAllEventParticipants: getAllEventParticipants,
-  createEventParticipant: createEventParticipant,
+  createEventParticipants: createEventParticipant,
   removeEventParticipant: removeEventParticipant,
   getParticipantsOfEvent: getParticipantsOfEvent
 };
