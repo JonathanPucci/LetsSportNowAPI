@@ -1,8 +1,0 @@
-{
-  "/api/*": {
-    "target": "https://letssportnow.herokuapp.com",
-    "secure": true,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  }
-}
