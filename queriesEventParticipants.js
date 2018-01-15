@@ -32,7 +32,7 @@ function getParticipantsOfEvent(req, res, next) {
     });
 }
 
-function createEventParticipant(req, res, next) {
+function createEventParticipants(req, res, next) {
   db
     .none(
       'insert into "EventParticipants"("Event_ID","User_ID")' +
