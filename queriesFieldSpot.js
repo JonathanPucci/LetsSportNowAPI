@@ -51,6 +51,7 @@ function createFieldSpot(req, res, next) {
 }
 
 function removeFieldSpot(req, res, next) {
+  console.log(req.params);
   var field = parseInt(req.params.field);
   var spot_id = parseInt(req.params.spot_id);
   db
