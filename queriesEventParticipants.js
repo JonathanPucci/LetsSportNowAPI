@@ -54,8 +54,8 @@ function removeEventParticipant(req, res, next) {
   var userid = parseInt(req.params.user_id);
   var eventid = parseInt(req.params.event_id);
   var ue = {
-    User_ID : userid;
-    Event_ID : eventid;
+    User_ID: userid,
+    Event_ID: eventid
   };
   db
     .result(
