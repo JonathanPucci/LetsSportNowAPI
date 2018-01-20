@@ -36,8 +36,8 @@ function createEvent(req, res, next) {
   req.body.age = parseInt(req.body.age);
   db
     .none(
-      'insert into "Events"("Location_latitude", "Location_longitude", "Description", "Photo", "Date", "Host_ID", "Spot_ID", "Participants_min", "Participants_max", "Participants_number","Sport")' +
-        "values(${Location_latitude}, ${Location_longitude}, ${ Description}, ${ Photo}, ${ Date}, ${ Host_ID}, ${ Spot_ID}, ${ Participants_min}, ${ Participants_max},${ Participants_number}, ${ Sport})",
+      'insert into "Events"( "Description", "Photo", "Date", "Host_ID", "Spot_ID", "Participants_min", "Participants_max", "Sport")' +
+        "values( ${ Description}, ${ Photo}, ${ Date}, ${ Host_ID}, ${ Spot_ID}, ${ Participants_min}, ${ Participants_max}, ${ Sport})",
       req.body
     )
     .then(function() {
@@ -53,12 +53,8 @@ function createEvent(req, res, next) {
 
 function updateEvent(req, res, next) {
   db
-    .none("update pups set name=$1, breed=$2, age=$3, sex=$4 where id=$5", [
-      req.body.name,
-      req.body.breed,
-      parseInt(req.body.age),
-      req.body.sex,
-      parseInt(req.params.id)
+    .none('update "Events" set "Description"=${ Description}, "Photo"=${ Photo}, "Date"=${ Date}, "Host_ID"=${ Host_ID}, "Spot_ID"=${ Spot_ID}, "Participants_min"=${ Participants_min}, "Participants_max"=${ Participants_max}, "Sport"=${ Sport} where "Event_ID"=${Event_ID} ',
+    req.body
     ])
     .then(function() {
       res.status(200).json({
@@ -72,9 +68,9 @@ function updateEvent(req, res, next) {
 }
 
 function removeEvent(req, res, next) {
-  var pupID = parseInt(req.params.id);
+  var eventID = parseInt(req.params.id);
   db
-    .result("delete from pups where id = $1", pupID)
+    .result('delete from "Events" where id = $1', eventID)
     .then(function(result) {
       /* jshint ignore:start */
       res.status(200).json({
