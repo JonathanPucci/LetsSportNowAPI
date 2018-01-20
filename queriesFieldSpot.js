@@ -35,8 +35,8 @@ function getFieldsOfSpot(req, res, next) {
 function createFieldSpot(req, res, next) {
   db
     .none(
-      'insert into "FieldSpots"("Spot_ID","Field_ID")' +
-        "values(${Spot_ID},${Field_ID})",
+      'insert into "FieldSpots"("Spot_ID","Field")' +
+        "values(${Spot_ID},${Field})",
       req.body
     )
     .then(function() {
@@ -51,13 +51,13 @@ function createFieldSpot(req, res, next) {
 }
 
 function removeFieldSpot(req, res, next) {
-  var userid = parseInt(req.params.user_id);
-  var eventid = parseInt(req.params.event_id);
+  var field = parseInt(req.params.field);
+  var spot_id = parseInt(req.params.spot_id);
   db
     .result(
-      'delete from "FieldSpots" where "Field_ID"= $1 AND "Spot_ID"= $2',
-      userid,
-      eventid
+      'delete from "FieldSpots" where "Field"= $1 AND "Spot_ID"= $2',
+      field,
+      spot_id
     )
     .then(function(result) {
       /* jshint ignore:start */

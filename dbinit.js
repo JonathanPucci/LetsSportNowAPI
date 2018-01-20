@@ -31,10 +31,47 @@ function createEventParticipant(eid, uid) {
       ep
     )
     .then(function() {
-      console.log("added user");
+      console.log("added eventparticipant");
     })
     .catch(function(err) {
-      console.log("error while adding user" + err);
+      console.log("error while adding eventparticipant" + err);
+    });
+}
+
+function createFieldSpot(field, spid) {
+  let fs = {
+    Field: field,
+    Spot_ID: spid
+  };
+  return db
+    .none(
+      'insert into "FieldSpots"("Spot_ID","Field")' +
+        "values(${Spot_ID},${Field})",,
+      fs
+    )
+    .then(function() {
+      console.log("added fieldspot");
+    })
+    .catch(function(err) {
+      console.log("error while adding fieldspot" + err);
+    });
+}
+
+function createFieldSpot(req, res, next) {
+  db
+    .none(
+      'insert into "FieldSpots"("Spot_ID","Field_ID")' +
+        "values(${Spot_ID},${Field_ID})",
+      req.body
+    )
+    .then(function() {
+      res.status(200).json({
+        status: "success",
+        message: "Inserted one FieldSpot"
+      });
+    })
+    .catch(function(err) {
+      return next(err);
     });
 }
 
@@ -101,7 +138,10 @@ db
           "10",
           "Basketball"
         ).then(() => {
-          createEventParticipant("1", "1");
+          createEventParticipant("1", "1")
+          .then(() => {
+            createFieldSpot("1", "Basketball");
+          });;
         });
       });
     });
