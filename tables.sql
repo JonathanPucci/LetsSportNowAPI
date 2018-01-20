@@ -42,14 +42,14 @@ CREATE TABLE "Spots" (
 
 CREATE TABLE "EventParticipants" (
 	"User_ID" serial NOT NULL,
-	"Event_ID" serial NOT NULL,
+	"Event_ID" serial NOT NULL
 ) WITH (
   OIDS=FALSE
 );
 
 CREATE TABLE "FieldSpots" (
 	"Spot_ID" serial NOT NULL,
-	"Field" TEXT NOT NULL,
+	"Field" TEXT NOT NULL
 ) WITH (
   OIDS=FALSE
 );

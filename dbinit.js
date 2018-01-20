@@ -90,7 +90,7 @@ function createSpot(id, llo, lla, f) {
 }
 
 db
-  .none('TRUNCATE pups, "Users", "Events", "Spots"')
+  .none('TRUNCATE "Users", "Events", "Spots","EventParticipants"')
   .then(() => {
     createUser("1", "Guigui").then(() => {
       createSpot("1", "0", "0", "0").then(() => {
