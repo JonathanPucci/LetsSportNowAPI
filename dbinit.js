@@ -38,11 +38,9 @@ function createEventParticipant(eid, uid) {
     });
 }
 
-function createEvent(id, lla, llo, des, p, da, hid, spid, pmi, pma, pn, s) {
+function createEvent(id, des, p, da, hid, spid, pmi, pma, s) {
   let myevent = {
     Event_ID: id,
-    Location_latitude: lla,
-    Location_longitude: llo,
     Description: des,
     Photo: p,
     Date: da,
@@ -50,13 +48,12 @@ function createEvent(id, lla, llo, des, p, da, hid, spid, pmi, pma, pn, s) {
     Spot_ID: spid,
     Participants_min: pmi,
     Participants_max: pma,
-    Participants_number: pn,
     Sport: s
   };
   return db
     .none(
-      'insert into "Events"("Event_ID","Location_latitude", "Location_longitude", "Description", "Photo", "Date", "Host_ID", "Spot_ID", "Participants_min", "Participants_max", "Participants_number","Sport")' +
-        "values(${Event_ID},${Location_latitude}, ${Location_longitude}, ${ Description}, ${ Photo}, ${ Date}, ${ Host_ID}, ${ Spot_ID}, ${ Participants_min}, ${ Participants_max},${ Participants_number}, ${ Sport})",
+      'insert into "Events"("Event_ID", "Description", "Photo", "Date", "Host_ID", "Spot_ID", "Participants_min", "Participants_max", "Sport")' +
+        "values(${Event_ID}, ${ Description}, ${ Photo}, ${ Date}, ${ Host_ID}, ${ Spot_ID}, ${ Participants_min}, ${ Participants_max}, ${ Sport})",
       myevent
     )
     .then(function() {
@@ -67,18 +64,17 @@ function createEvent(id, lla, llo, des, p, da, hid, spid, pmi, pma, pn, s) {
     });
 }
 
-function createSpot(id, llo, lla, f) {
+function createSpot(id, llo, lla) {
   let spot = {
     Spot_ID: id,
     Spot_longitude: llo,
-    Spot_latitude: lla,
-    Fields: f
+    Spot_latitude: lla
   };
 
   return db
     .none(
-      'insert into "Spots"("Spot_ID","Spot_longitude","Spot_latitude","Fields")' +
-        "values(${Spot_ID},${Spot_longitude}, ${Spot_latitude}, ${Fields})",
+      'insert into "Spots"("Spot_ID","Spot_longitude","Spot_latitude")' +
+        "values(${Spot_ID},${Spot_longitude}, ${Spot_latitude})",
       spot
     )
     .then(function() {
@@ -93,11 +89,9 @@ db
   .none('TRUNCATE "Users", "Events", "Spots","EventParticipants"')
   .then(() => {
     createUser("1", "Guigui").then(() => {
-      createSpot("1", "0", "0", "0").then(() => {
+      createSpot("1", "0", "0").then(() => {
         createEvent(
           "1",
-          "0",
-          "0",
           "descr",
           "photo",
           "01/01/2018",
@@ -105,7 +99,6 @@ db
           "1",
           "0",
           "10",
-          "0",
           "Basketball"
         ).then(() => {
           createEventParticipant("1", "1");
