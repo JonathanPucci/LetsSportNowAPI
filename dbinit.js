@@ -121,7 +121,7 @@ db
           "Basketball"
         ).then(() => {
           createEventParticipant("1", "1").then(() => {
-            createFieldSpot("1", "Basketball");
+            createFieldSpot("Basketball", "1");
           });
         });
       });
