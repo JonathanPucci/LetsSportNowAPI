@@ -26,10 +26,9 @@ function createEventParticipant(eid, uid) {
   };
   return db
     .none(
-      'insert into "EventParticipants"("User_ID","User_Name")' +
-        "values(${User_ID},${User_Name})",
-      User_ID,
-      Event_ID
+      'insert into "EventParticipants"("User_ID","Event_ID")' +
+        "values(${User_ID},${Event_ID})",
+      ep
     )
     .then(function() {
       console.log("added user");
