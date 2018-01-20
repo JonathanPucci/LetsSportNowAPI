@@ -51,13 +51,10 @@ function createFieldSpot(req, res, next) {
 }
 
 function removeFieldSpot(req, res, next) {
-  var field = req.params.field;
-  var spot_id = parseInt(req.params.spot_id);
   db
     .result(
-      'delete from "FieldSpots" where "Field"= $1 AND "Spot_ID"= $2',
-      field,
-      spot_id
+      'delete from "FieldSpots" where "Field"= ${field} AND "Spot_ID"= ${spot_id}',
+      req.params
     )
     .then(function(result) {
       /* jshint ignore:start */
