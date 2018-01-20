@@ -46,7 +46,7 @@ function createFieldSpot(field, spid) {
   return db
     .none(
       'insert into "FieldSpots"("Spot_ID","Field")' +
-        "values(${Spot_ID},${Field})",,
+        "values(${Spot_ID},${Field})",
       fs
     )
     .then(function() {
@@ -54,24 +54,6 @@ function createFieldSpot(field, spid) {
     })
     .catch(function(err) {
       console.log("error while adding fieldspot" + err);
-    });
-}
-
-function createFieldSpot(req, res, next) {
-  db
-    .none(
-      'insert into "FieldSpots"("Spot_ID","Field_ID")' +
-        "values(${Spot_ID},${Field_ID})",
-      req.body
-    )
-    .then(function() {
-      res.status(200).json({
-        status: "success",
-        message: "Inserted one FieldSpot"
-      });
-    })
-    .catch(function(err) {
-      return next(err);
     });
 }
 
@@ -138,10 +120,9 @@ db
           "10",
           "Basketball"
         ).then(() => {
-          createEventParticipant("1", "1")
-          .then(() => {
+          createEventParticipant("1", "1").then(() => {
             createFieldSpot("1", "Basketball");
-          });;
+          });
         });
       });
     });
