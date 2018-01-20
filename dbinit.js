@@ -28,7 +28,8 @@ function createEventParticipant(eid, uid) {
     .none(
       'insert into "EventParticipants"("User_ID","User_Name")' +
         "values(${User_ID},${User_Name})",
-      user
+      User_ID,
+      Event_ID
     )
     .then(function() {
       console.log("added user");
