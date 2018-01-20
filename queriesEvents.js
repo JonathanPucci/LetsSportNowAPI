@@ -53,9 +53,10 @@ function createEvent(req, res, next) {
 
 function updateEvent(req, res, next) {
   db
-    .none('update "Events" set "Description"=${ Description}, "Photo"=${ Photo}, "Date"=${ Date}, "Host_ID"=${ Host_ID}, "Spot_ID"=${ Spot_ID}, "Participants_min"=${ Participants_min}, "Participants_max"=${ Participants_max}, "Sport"=${ Sport} where "Event_ID"=${Event_ID} ',
-    req.body
-    ])
+    .none(
+      'update "Events" set "Description"=${ Description}, "Photo"=${ Photo}, "Date"=${ Date}, "Host_ID"=${ Host_ID}, "Spot_ID"=${ Spot_ID}, "Participants_min"=${ Participants_min}, "Participants_max"=${ Participants_max}, "Sport"=${ Sport} where "Event_ID"=${Event_ID} ',
+      req.body
+    )
     .then(function() {
       res.status(200).json({
         status: "success",
