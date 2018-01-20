@@ -53,11 +53,14 @@ function createEventParticipant(req, res, next) {
 function removeEventParticipant(req, res, next) {
   var userid = parseInt(req.params.user_id);
   var eventid = parseInt(req.params.event_id);
+  var ue = {
+    User_ID : userid;
+    Event_ID : eventid;
+  };
   db
     .result(
-      'delete from "EventParticipants" where "User_ID"= $1 AND "Event_ID"= $2',
-      userid,
-      eventid
+      'delete from "EventParticipants" where "User_ID"= ${User_ID} AND "Event_ID"= ${Event_ID}',
+      ue
     )
     .then(function(result) {
       /* jshint ignore:start */
